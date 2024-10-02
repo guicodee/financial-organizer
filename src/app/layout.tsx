@@ -1,3 +1,4 @@
+import RootProviders from '@/components/providers/root-providers';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
@@ -18,8 +19,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<ClerkProvider>
-			<html lang="pt-BR">
-				<body className={`${roboto.className} antialiased`}>{children}</body>
+			<html lang="pt-BR" className="dark" style={{ colorScheme: 'dark' }}>
+				<body className={`${roboto.className} antialiased`}>
+					<RootProviders>{children}</RootProviders>
+				</body>
 			</html>
 		</ClerkProvider>
 	);
