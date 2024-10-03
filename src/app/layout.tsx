@@ -1,10 +1,10 @@
 import RootProviders from '@/components/providers/root-providers';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
-import { Roboto } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import './globals.css';
 
-const roboto = Roboto({ subsets: ['latin'], weight: '400' });
+const poppins = Poppins({ weight: '400', subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	title: 'Organizador financeiro',
@@ -20,7 +20,7 @@ export default function RootLayout({
 	return (
 		<ClerkProvider>
 			<html lang="pt-BR" className="dark" style={{ colorScheme: 'dark' }}>
-				<body className={`${roboto.className} antialiased`}>
+				<body className={`${poppins.className} antialiased`}>
 					<RootProviders>{children}</RootProviders>
 				</body>
 			</html>
