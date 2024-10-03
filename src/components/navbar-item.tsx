@@ -22,14 +22,14 @@ export default function NavbarItem({ label, link, onClick }: NavbarItemProps) {
 				className={cn(
 					buttonVariants({ variant: 'ghost' }),
 					'w-full justify-start text-base text-muted-foreground hover:text-foreground',
-					isActive && 'text-foreground'
+					isActive && 'text-zinc-100'
 				)}
 				onClick={onClick}
 			>
 				{label}
 			</Link>
 			{isActive && (
-				<div className="absolute -bottom-[2px] left-1/2 hidden h-[2px] w-[80%] -translate-x-1/2 rounded-xl bg-foreground md:block" />
+				<div className="absolute -bottom-[2px] left-1/2 hidden h-[2px] w-[80%] -translate-x-1/2 rounded-xl bg-amber-200 md:block" />
 			)}
 		</div>
 	);
