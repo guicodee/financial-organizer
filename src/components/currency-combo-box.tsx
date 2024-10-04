@@ -28,24 +28,24 @@ import SkeletonWrapper from './skelleton-wrapper';
 export default function CurrencyComboBox() {
 	const [open, setOpen] = React.useState(false);
 	const isDesktop = useMediaQuery('(min-width: 768px)');
-	const [selectionOption, setSelectionOption] = React.useState<Currency | null>(
+	const [selectedOption, setSelectedOption] = React.useState<Currency | null>(
 		null
 	);
 
-	const userSettings = useQuery<UserSettings>({
+	const { data: getUserSettings, isFetching } = useQuery<UserSettings>({
 		queryKey: ['userSettings'],
 		queryFn: () => fetch('/api/user-settings').then((res) => res.json()),
 	});
 
 	React.useEffect(() => {
-		if (!userSettings.data) return;
+		if (!getUserSettings) return;
 
 		const userCurrency = currencies.find(
-			(currency) => currency.value === userSettings.data.currency
+			(currency) => currency.value === getUserSettings.currency
 		);
 
-		if (userCurrency) setSelectionOption(userCurrency);
-	}, [userSettings.data]);
+		if (userCurrency) setSelectedOption(userCurrency);
+	}, [getUserSettings]);
 
 	const mutation = useMutation({
 		mutationFn: UpdateUserSettings,
@@ -54,7 +54,7 @@ export default function CurrencyComboBox() {
 				id: 'update-currency',
 			});
 
-			setSelectionOption(
+			setSelectedOption(
 				currencies.find((c) => c.value === data.currency) || null
 			);
 		},
@@ -83,7 +83,7 @@ export default function CurrencyComboBox() {
 
 	if (isDesktop) {
 		return (
-			<SkeletonWrapper isLoading={userSettings.isFetching}>
+			<SkeletonWrapper isLoading={isFetching}>
 				<Popover open={open} onOpenChange={setOpen}>
 					<PopoverTrigger asChild>
 						<Button
@@ -91,8 +91,8 @@ export default function CurrencyComboBox() {
 							className="w-fit justify-start"
 							disabled={mutation.isPending}
 						>
-							{selectionOption ? (
-								<>{selectionOption.label}</>
+							{selectedOption ? (
+								<>{selectedOption.label}</>
 							) : (
 								<>Selecione a moeda</>
 							)}
@@ -110,7 +110,7 @@ export default function CurrencyComboBox() {
 	}
 
 	return (
-		<SkeletonWrapper isLoading={userSettings.isFetching}>
+		<SkeletonWrapper isLoading={isFetching}>
 			<Drawer open={open} onOpenChange={setOpen}>
 				<DrawerTrigger asChild>
 					<Button
@@ -118,8 +118,8 @@ export default function CurrencyComboBox() {
 						className="w-fit justify-start"
 						disabled={mutation.isPending}
 					>
-						{selectionOption ? (
-							<>{selectionOption.label}</>
+						{selectedOption ? (
+							<>{selectedOption.label}</>
 						) : (
 							<>Selecione a moeda</>
 						)}
