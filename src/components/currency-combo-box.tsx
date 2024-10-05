@@ -23,7 +23,7 @@ import { useMediaQuery } from '@/hooks/use-media-query';
 import { UserSettings } from '@prisma/client';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import SkeletonWrapper from './skelleton-wrapper';
+import SkeletonWrapper from './skeleton-wrapper';
 
 export default function CurrencyComboBox() {
 	const [open, setOpen] = React.useState(false);
