@@ -19,17 +19,27 @@ import { cn } from '@/lib/utils';
 import { Category } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
 import { Check, ChevronsUpDown } from 'lucide-react';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import CategoryDialog from './category-dialog';
 import CategoryRow from './category-row';
 
 interface CategoryPickerProps {
 	type: TransactionType;
+	onChange: (value: string) => void;
 }
 
-export default function CategoryPicker({ type }: CategoryPickerProps) {
+export default function CategoryPicker({
+	type,
+	onChange,
+}: CategoryPickerProps) {
 	const [open, setOpen] = useState(false);
 	const [value, setValue] = useState('');
+
+	useEffect(() => {
+		if (!value) return;
+
+		onChange(value);
+	}, [onChange, value]);
 
 	const { data: categoriesQuery } = useQuery({
 		queryKey: ['categories', type],
