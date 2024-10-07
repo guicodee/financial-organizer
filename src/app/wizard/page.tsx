@@ -13,6 +13,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { Eclipse } from 'lucide-react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import WizardMessage from './components/wizard-message';
 
 export default async function Wizard() {
 	const user = await currentUser();
@@ -25,12 +26,7 @@ export default async function Wizard() {
 					Bem vindo,{' '}
 					<span className="ml-2 font-bold">{user.firstName}! 👋</span>
 				</h1>
-				<h2 className="mt-2 text-center text-base text-zinc-300">
-					Vamos começar configurando sua moeda.
-				</h2>
-				<h3 className="mt-1 text-center text-sm text-zinc-400">
-					Você pode alterar essas configurações a qualquer momento.
-				</h3>
+				<WizardMessage />
 			</div>
 			<Separator />
 			<Card className="w-full">

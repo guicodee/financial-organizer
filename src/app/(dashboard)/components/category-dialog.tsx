@@ -36,6 +36,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Category } from '@prisma/client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { CircleOff, Loader2, Plus } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -50,6 +51,8 @@ export default function CategoryDialog({
 	type,
 	successCallback,
 }: CategoryDialogProps) {
+	const theme = useTheme();
+
 	const [open, setOpen] = useState(false);
 	const form = useForm<CreateCategoriesSchemaType>({
 		resolver: zodResolver(CreateCategoriesSchema),
@@ -170,6 +173,7 @@ export default function CategoryDialog({
 											<PopoverContent className="w-full">
 												<Picker
 													data={data}
+													theme={theme.resolvedTheme}
 													onEmojiSelect={(emoji: { native: string }) => {
 														field.onChange(emoji.native);
 													}}
