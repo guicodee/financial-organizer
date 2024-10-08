@@ -4,6 +4,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { CreditCard, DollarSign } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import DialogTransaction from './components/dialog-transaction';
+import Overview from './components/overview';
 
 export default async function Page() {
 	const user = await currentUser();
@@ -50,6 +51,7 @@ export default async function Page() {
 					</div>
 				</div>
 			</div>
+			<Overview userSettings={userSettings} />
 		</div>
 	);
 }
