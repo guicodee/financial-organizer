@@ -5,6 +5,7 @@ import { UserSettings } from '@prisma/client';
 import { differenceInDays, startOfMonth } from 'date-fns';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import CategoriesStats from './categories-stats';
 import StatsCards from './stats-cards';
 
 interface OverviewProps {
@@ -43,8 +44,14 @@ export default function Overview({ userSettings }: OverviewProps) {
 				</div>
 			</div>
 
-			<div className="space-y-4 px-3">
+			<div className="container w-full flex flex-col mx-auto space-y-4 px-8">
 				<StatsCards
+					userSettings={userSettings}
+					from={dateRange.from}
+					to={dateRange.to}
+				/>
+
+				<CategoriesStats
 					userSettings={userSettings}
 					from={dateRange.from}
 					to={dateRange.to}
