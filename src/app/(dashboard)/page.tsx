@@ -3,7 +3,8 @@ import prisma from '@/lib/prisma';
 import { currentUser } from '@clerk/nextjs/server';
 import { CreditCard, DollarSign } from 'lucide-react';
 import { redirect } from 'next/navigation';
-import DialogTransaction from './components/dialog-transaction';
+import DialogTransaction from './components/category-transaction/dialog-transaction';
+import History from './components/history';
 import Overview from './components/overview';
 
 export default async function Page() {
@@ -52,6 +53,7 @@ export default async function Page() {
 				</div>
 			</div>
 			<Overview userSettings={userSettings} />
+			<History userSettings={userSettings} />
 		</div>
 	);
 }

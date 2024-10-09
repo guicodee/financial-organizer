@@ -40,7 +40,7 @@ import { useTheme } from 'next-themes';
 import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import CreateCategory from '../_actions/categories';
+import CreateCategory from '../../_actions/categories';
 
 interface CategoryDialogProps {
 	type: TransactionType;

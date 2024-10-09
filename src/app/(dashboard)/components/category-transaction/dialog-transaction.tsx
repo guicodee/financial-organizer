@@ -40,7 +40,7 @@ import { CalendarIcon, Loader2 } from 'lucide-react';
 import { ReactNode, useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import CreateTransaction from '../_actions/transactions';
+import CreateTransaction from '../../_actions/transactions';
 import CategoryPicker from './category-picker';
 
 interface DialogTransactionProps {
