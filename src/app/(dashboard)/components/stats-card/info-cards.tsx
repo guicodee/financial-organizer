@@ -7,19 +7,15 @@ import { UserSettings } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
 import { TrendingDown, TrendingUp, Wallet } from 'lucide-react';
 import { useMemo } from 'react';
-import StatsCard from './stats-card';
+import StatsCard from './summary-card';
 
-interface StatsCardsProps {
+interface InfoCardsProps {
 	userSettings: UserSettings;
 	from: Date;
 	to: Date;
 }
 
-export default function StatsCards({
-	from,
-	to,
-	userSettings,
-}: StatsCardsProps) {
+export default function InfoCards({ from, to, userSettings }: InfoCardsProps) {
 	const statsQuery = useQuery<getBalanceStatsType>({
 		queryKey: ['overview', 'stats', from, to],
 		queryFn: () =>

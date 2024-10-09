@@ -2,19 +2,19 @@ import { Card } from '@/components/ui/card';
 import { ReactNode, useCallback } from 'react';
 import CountUp from 'react-countup';
 
-interface StatsCardProps {
+interface SummaryCardProps {
 	formatter: Intl.NumberFormat;
 	icon: ReactNode;
 	title: string;
 	value: number;
 }
 
-export default function StatsCard({
+export default function SummaryCard({
 	formatter,
 	icon,
 	title,
 	value,
-}: StatsCardProps) {
+}: SummaryCardProps) {
 	const formatFn = useCallback(
 		(value: number) => {
 			return formatter.format(value);
