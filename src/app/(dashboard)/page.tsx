@@ -4,7 +4,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { CreditCard, DollarSign } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import DialogTransaction from './components/category-transaction/dialog-transaction';
-import History from './components/history';
+import History from './components/history/history';
 import Overview from './components/overview';
 
 export default async function Page() {
